@@ -48,9 +48,10 @@ export class LoginPage implements OnInit {
     var claveValidar = this.usuario.controls.clave.value;
 
     //rescatamos el usuario con el método login usuario:
-     var usuarioLogin = this.storage.loginUsuario(correoValidar, claveValidar);
-    //validamos si existe el usuario
-    if (usuarioLogin != undefined) {
+     var usuarioLogin = await this.storage.loginUsuario('personas',correoValidar, claveValidar);
+     //validamos si existe el usuario
+     if (usuarioLogin != undefined) {
+      console.log(usuarioLogin)
     //UNA VEZ QUE VALIDO QUE EXISTE, ENVIARE ESOS DATOS A LA SIGUIENTE PÁGINA:
       let navigationExtras: NavigationExtras = {
         state: {

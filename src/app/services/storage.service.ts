@@ -179,11 +179,11 @@ export class StorageService {
 //METODO PARA VALIDAR LOGIN
 
 
-loginUsuario(correo, clave) {
+async loginUsuario(key, correo, clave) {
+  this.datos = await this.storage.get(key) || [];
   var usuarioLogin: any;
-  usuarioLogin = this.usuarios.find(usu => usu.correo == 'administrador@duoc.cl' && usu.clave == 'administrador');
+  usuarioLogin = this.usuarios.find(usu => usu.correo == correo && usu.clave == clave);
   if (usuarioLogin != undefined) {
-    
     this.isAuthenticated.next(true);
     return usuarioLogin;
   }
